@@ -235,6 +235,7 @@ fun SignUp(
                         inputNewEmail = ""
                         inputNewFullName = ""
                         inputNewPassword = ""
+                        navigateToLoginScreen()
                         Toast.makeText(context, "Congratulations! Your account has been created " +
                                 "successfully", Toast.LENGTH_LONG).show()
                     } else {
@@ -333,7 +334,7 @@ fun LoginScreen(
                     userEmail = it
                 },
                 placeholder = {
-                    Text(text = "Enter the email address associated with your account")
+                    Text(text = "Enter the email address")
                 },
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Done

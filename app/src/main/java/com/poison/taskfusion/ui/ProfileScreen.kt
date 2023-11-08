@@ -55,9 +55,14 @@ fun ProfileScreen(){
             }
         }
         composable("accountInformationScreen"){
+            AccountInformationScreen {
+                navController.navigate("profileScreen")
+            }
         }
         composable("settingScreen"){
-
+            SettingScreen {
+                navController.navigate("profileScreen")
+            }
         }
     }
 }
@@ -177,9 +182,25 @@ fun AccountInformationScreen(
 ){
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(text = "information screen")
+    }
+}
 
+@Composable
+fun SettingScreen(
+    backToPreviousScreen: () -> Unit
+){
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "Setting Screen")
     }
 }
 
