@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poison.taskfusion.database.Database
 import com.poison.taskfusion.model.Task
+import com.poison.taskfusion.ui.tanggalDipilih
 import com.poison.taskfusion.ui.taskName
 import io.realm.kotlin.ext.query
 import kotlinx.coroutines.flow.Flow
@@ -13,11 +14,20 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel: ViewModel() {
     var taskData = mutableStateOf(emptyList<Task>())
+    var taskDataCalendar = mutableStateOf(emptyList<Task>())
 
     init {
         viewModelScope.launch {
             fetchingTaskData(taskName = taskName.value).collect{
                 taskData.value = it
+            }
+        }
+    }
+
+    init {
+        viewModelScope.launch {
+            fetchingTaskDataByDate(tanggalDipilih.value).collect {
+                taskDataCalendar.value = it
             }
         }
     }
@@ -49,6 +59,10 @@ class TaskViewModel: ViewModel() {
             Database.realm.query<Task>("taskTitle == $0", taskName).asFlow().map { it.list }
         }
 
+    }
+
+    private fun fetchingTaskDataByDate(taskDate: String): Flow<List<Task>> {
+        return Database.realm.query<Task>("taskDate == $0", taskDate).asFlow().map { it.list }
     }
 
     fun deleteTask(task: Task) {

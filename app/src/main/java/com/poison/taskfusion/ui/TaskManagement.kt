@@ -121,7 +121,9 @@ fun TaskManagementScreen(
                         onClick = {
                             navController.navigate("addNewTask")
                         },
-                        contentColor = Color.Black
+                        contentColor = Color.Black,
+                        modifier = Modifier
+                            .padding(bottom = 90.dp)
                     ) {
                         Icon(
                             Icons.Rounded.Add,
@@ -154,11 +156,19 @@ fun TaskManagementScreen(
                                 .padding(horizontal = 24.dp)
                         )
                     }
-                    TaskList(
-                        taskList = taskData,
-                        taskViewModel = taskViewModel,
-                        navController = navController
-                    )
+                    if (taskData.isEmpty()){
+                        Text(
+                            text = "You don't have any task right now",
+                            modifier = Modifier
+                                .padding(horizontal = 24.dp)
+                        )
+                    }else {
+                        TaskList(
+                            taskList = taskData,
+                            taskViewModel = taskViewModel,
+                            navController = navController
+                        )
+                    }
                 }
             }
         }
@@ -173,8 +183,7 @@ fun TaskManagementScreen(
 @Composable
 fun TaskItemCard(
     taskViewModel: TaskViewModel,
-    task: Task,
-    navController: NavController
+    task: Task
 ) {
     var isClicked by remember {
         mutableStateOf(false)
@@ -291,8 +300,7 @@ fun TaskList(
                 ) {
                     TaskItemCard(
                         taskViewModel = taskViewModel,
-                        task = task,
-                        navController = navController
+                        task = task
                     )
                 }
             }

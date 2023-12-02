@@ -109,7 +109,9 @@ fun GoalSetting(
                         onClick = {
                             navController.navigate("addNewGoal")
                         },
-                        contentColor = Color.Black
+                        contentColor = Color.Black,
+                        modifier = Modifier
+                            .padding(bottom = 90.dp)
                     ) {
                         Icon(
                             Icons.Rounded.Add,
