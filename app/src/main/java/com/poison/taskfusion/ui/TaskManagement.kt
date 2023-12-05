@@ -149,8 +149,10 @@ fun TaskManagementScreen(
                             .padding(horizontal = 24.dp)
                     )
                     Spacer(modifier = Modifier.height(20.dp))
-                    if (taskName.value.isNotEmpty() && taskData.isEmpty()) {
-                        Text(
+                    if (taskName.value.isNotEmpty()) {
+                        if (
+                            taskData.isEmpty()
+                        )Text(
                             text = "no match",
                             modifier = Modifier
                                 .padding(horizontal = 24.dp)

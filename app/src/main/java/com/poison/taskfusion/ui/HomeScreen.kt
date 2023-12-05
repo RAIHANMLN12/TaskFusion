@@ -193,7 +193,9 @@ fun TaskOverView(
             fontWeight = FontWeight.Bold
         )
         if(taskList.isNotEmpty()){
-            LazyRow(){
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+            ){
                 items(taskList){task ->
                     Card(
                         modifier = Modifier

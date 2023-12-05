@@ -8,13 +8,14 @@ import com.poison.taskfusion.model.Task
 import com.poison.taskfusion.ui.tanggalDipilih
 import com.poison.taskfusion.ui.taskName
 import io.realm.kotlin.ext.query
+import io.realm.kotlin.query.RealmResults
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class TaskViewModel: ViewModel() {
     var taskData = mutableStateOf(emptyList<Task>())
-    var taskDataCalendar = mutableStateOf(emptyList<Task>())
+    var taskDataByDate = mutableStateOf(emptyList<Task>())
 
     init {
         viewModelScope.launch {
@@ -24,13 +25,7 @@ class TaskViewModel: ViewModel() {
         }
     }
 
-    init {
-        viewModelScope.launch {
-            fetchingTaskDataByDate(tanggalDipilih.value).collect {
-                taskDataCalendar.value = it
-            }
-        }
-    }
+
 
     fun createNewTask(
         inputTaskTitle: String,
@@ -52,17 +47,16 @@ class TaskViewModel: ViewModel() {
         }
     }
 
-    private fun fetchingTaskData(taskName: String): Flow<List<Task>> {
-        return if (taskName.isEmpty()) {
-            Database.realm.query<Task>().asFlow().map { it.list }
-        } else {
+    private fun fetchingTaskData(taskName: String = ""): Flow<List<Task>> {
+        return if (taskName.isNotEmpty()) {
             Database.realm.query<Task>("taskTitle == $0", taskName).asFlow().map { it.list }
+        } else {
+            Database.realm.query<Task>().asFlow().map { it.list }
         }
-
     }
 
-    private fun fetchingTaskDataByDate(taskDate: String): Flow<List<Task>> {
-        return Database.realm.query<Task>("taskDate == $0", taskDate).asFlow().map { it.list }
+    fun fetchingTaskDataByDate(): RealmResults<Task> {
+        return Database.realm.query<Task>("taskDate == $0", tanggalDipilih.value).find()
     }
 
     fun deleteTask(task: Task) {

@@ -4,35 +4,34 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.poison.taskfusion.model.Task
+import androidx.navigation.compose.rememberNavController
 import com.poison.taskfusion.viewModel.TaskViewModel
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Calendar
 
-var tanggalDipilih = mutableStateOf(LocalDate.now().toString())
+var tanggalDipilih = mutableStateOf("")
+
 @SuppressLint("SimpleDateFormat")
 @Composable
 fun CalendarView() {
-    Column {
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+    ) {
         AndroidView(
             factory = {
                 android.widget.CalendarView(it)
             },
-            modifier = Modifier.wrapContentWidth(),
+            modifier = Modifier.fillMaxWidth(),
             update = { calendarView ->
                 calendarView.setDate(Calendar.getInstance().timeInMillis, true, true)
                 calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -47,24 +46,9 @@ fun CalendarView() {
 }
 
 @Composable
-fun ListData(
-    listData: List<Task>,
-    taskViewModel: TaskViewModel
-){
-    LazyColumn {
-        items(listData) {
-            TaskItemCard(
-                taskViewModel = taskViewModel,
-                task = it
-            )
-        }
-    }
-}
-
-@Composable
 fun CalendarScreen(){
     val taskViewModel = TaskViewModel()
-    val data by taskViewModel.taskDataCalendar
+    val navController = rememberNavController()
 
     Column(
         modifier = Modifier
@@ -72,15 +56,11 @@ fun CalendarScreen(){
             .background(Color.White)
     ) {
         CalendarView()
-        if(data.isEmpty()){
-            Text(
-                text = "You don't have any task at that time",
-                modifier = Modifier
-                    .padding(horizontal = 24.dp)
-            )
-        }else {
-            ListData(listData = data, taskViewModel = taskViewModel)
-        }
+        TaskList(
+            taskList = taskViewModel.fetchingTaskDataByDate(),
+            taskViewModel = taskViewModel,
+            navController = navController
+        )
     }
 }
 
