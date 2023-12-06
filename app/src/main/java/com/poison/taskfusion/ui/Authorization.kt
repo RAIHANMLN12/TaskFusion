@@ -1,6 +1,7 @@
 package com.poison.taskfusion.ui
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,11 +18,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -67,6 +71,7 @@ fun SignUp(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFFfffefb))
     ) {
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -78,7 +83,8 @@ fun SignUp(
             Text(
                 text = "Create Your Account",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
             )
         }
 
@@ -114,7 +120,12 @@ fun SignUp(
                 ),
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Black,
+                    textColor = Color.Black,
+                )
             )
         }
 
@@ -129,7 +140,8 @@ fun SignUp(
             Text(
                 text = "Email",
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color.Black
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -150,7 +162,12 @@ fun SignUp(
                 ),
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Black,
+                    textColor = Color.Black,
+                )
             )
         }
 
@@ -165,7 +182,8 @@ fun SignUp(
             Text(
                 text = "Password",
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color.Black
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -207,7 +225,12 @@ fun SignUp(
                 ),
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Black,
+                    textColor = Color.Black,
+                )
             )
         }
 
@@ -244,14 +267,20 @@ fun SignUp(
                 },
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFd4eaf7),
+                    contentColor = Color.Black
+                )
+
             ) {
                 Text(
                     text = "Sign Up",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier
-                        .padding(vertical = 8.dp)
+                        .padding(vertical = 8.dp),
+                    color = Color.Black
                 )
             }
         }
@@ -270,8 +299,8 @@ fun SignUp(
                 modifier = Modifier
                     .clickable {
                         navigateToLoginScreen()
-                    }
-
+                    },
+                color = Color.Black
             )
         }
     }
@@ -299,6 +328,7 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFFfffefb))
     ) {
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -310,7 +340,8 @@ fun LoginScreen(
             Text(
                 text = "Log In to Your Account",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
             )
         }
 
@@ -325,7 +356,8 @@ fun LoginScreen(
             Text(
                 text = "Email",
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color.Black
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -346,7 +378,12 @@ fun LoginScreen(
                 ),
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Black,
+                    textColor = Color.Black,
+                )
             )
         }
 
@@ -361,7 +398,8 @@ fun LoginScreen(
             Text(
                 text = "Password",
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color.Black
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -403,7 +441,12 @@ fun LoginScreen(
                 ),
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Black,
+                    textColor = Color.Black,
+                )
             )
         }
 
@@ -436,14 +479,19 @@ fun LoginScreen(
                 },
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFd4eaf7),
+                    contentColor = Color.Black
+                )
             ) {
                 Text(
                     text = "Login",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier
-                        .padding(vertical = 8.dp)
+                        .padding(vertical = 8.dp),
+                    color = Color.Black
                 )
             }
         }
@@ -462,7 +510,8 @@ fun LoginScreen(
                 modifier = Modifier
                     .clickable {
                         navigateToSignUpScreen()
-                    }
+                    },
+                color = Color.Black
             )
         }
     }
