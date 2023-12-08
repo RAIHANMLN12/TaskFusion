@@ -23,7 +23,9 @@ import androidx.compose.material.icons.outlined.Flag
 import androidx.compose.material.icons.outlined.TaskAlt
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -70,12 +72,14 @@ fun HomeScreenHeader(
             Text(
                 text = "Hello, $fullName",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.Normal,
+                color = Color(0xFF000000)
             )
             Text(
                 text = "Let's get productive",
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color(0xFF000000)
             )
         }
     }
@@ -92,7 +96,7 @@ fun Menu(
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(Color.Cyan),
+            .background(Color(0xFFFCA311)),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround
     ) {
@@ -105,7 +109,6 @@ fun Menu(
                 .clip(
                     RoundedCornerShape(15.dp)
                 )
-                .background(Color.White)
                 .clickable {
                     navigateToTaskManagement()
                 },
@@ -117,9 +120,14 @@ fun Menu(
                 Icon(
                     Icons.Outlined.Flag,
                     contentDescription = null,
-                    tint = Color.Black
+                    tint = Color(0xFF14213D)
                 )
-                Text(text = "Task")
+                Text(
+                    text = "Task",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color(0xFF000000)
+                )
             }
         }
 
@@ -131,7 +139,6 @@ fun Menu(
                 .clip(
                     RoundedCornerShape(15.dp)
                 )
-                .background(Color.White)
                 .clickable {
                     navigateToGoalSetting()
                 },
@@ -143,9 +150,14 @@ fun Menu(
                 Icon(
                     Icons.Outlined.TaskAlt,
                     contentDescription = null,
-                    tint = Color.Black
+                    tint = Color(0xFF14213D)
                 )
-                Text(text = "Goal")
+                Text(
+                    text = "Goal",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color(0xFF000000)
+                )
             }
         }
 
@@ -157,7 +169,6 @@ fun Menu(
                 .clip(
                     RoundedCornerShape(15.dp)
                 )
-                .background(Color.White)
                 .clickable {
                     navigateToTimeTracking()
                 },
@@ -169,9 +180,14 @@ fun Menu(
                 Icon(
                     Icons.Outlined.Timer,
                     contentDescription = null,
-                    tint = Color.Black
+                    tint = Color(0xFF14213D)
                 )
-                Text(text = "Timer")
+                Text(
+                    text = "Timer",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color(0xFF000000)
+                )
             }
         }
     }
@@ -190,7 +206,8 @@ fun TaskOverView(
         Text(
             text = "Your Task",
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF000000)
         )
         if(taskList.isNotEmpty()){
             LazyRow(
@@ -200,9 +217,11 @@ fun TaskOverView(
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 24.dp)
-                            .size(width = 250.dp, height = 150.dp),
-                        shape = RoundedCornerShape(15.dp)
+                            .padding(vertical = 24.dp),
+                        shape = RoundedCornerShape(15.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color(0xFFE5E5E5)
+                        )
                     ){
                         Column(
                             modifier = Modifier
@@ -212,18 +231,21 @@ fun TaskOverView(
                             Text(
                                 text = task.taskTitle,
                                 fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF000000)
                             )
                             Spacer(modifier = Modifier.height(10.dp))
                             Surface(
-                                shape = RoundedCornerShape(15.dp)
+                                shape = RoundedCornerShape(15.dp),
+                                color = Color(0xFFFFFFFF)
                             ) {
                                 Text(
                                     text = task.taskPriority,
                                     fontWeight = FontWeight.Normal,
                                     fontSize = 14.sp,
                                     modifier = Modifier
-                                        .padding(horizontal = 20.dp, vertical = 10.dp)
+                                        .padding(horizontal = 20.dp, vertical = 10.dp),
+                                    color = Color(0xFF000000)
                                 )
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -233,13 +255,14 @@ fun TaskOverView(
                                 Icon(
                                     Icons.Outlined.CalendarMonth,
                                     contentDescription = null,
-                                    tint = Color.Black
+                                    tint = MaterialTheme.colorScheme.secondary
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     text = task.taskDate,
                                     fontWeight = FontWeight.Normal,
                                     fontSize = 14.sp,
+                                    color = Color(0xFF000000)
                                 )
                             }
                         }
@@ -260,7 +283,8 @@ fun TaskOverView(
                     Text(
                         text = "Create new task",
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Normal
+                        fontWeight = FontWeight.Normal,
+                        color = Color(0xFF000000)
                     )
                 }
             }
@@ -281,7 +305,8 @@ fun GoalOverView(
         Text(
             text = "Your Goal",
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF000000)
         )
         Spacer(modifier = Modifier.height(15.dp))
         if (goalList.isNotEmpty()){
@@ -291,7 +316,10 @@ fun GoalOverView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 24.dp),
-                        shape = RoundedCornerShape(15.dp)
+                        shape = RoundedCornerShape(15.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color(0xFFE5E5E5)
+                        )
                     ){
                         Column(
                             modifier = Modifier
@@ -301,7 +329,8 @@ fun GoalOverView(
                             Text(
                                 text = goal.goalTitle,
                                 fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF000000)
                             )
                             Spacer(modifier = Modifier.height(10.dp))
                             Text(
@@ -309,7 +338,8 @@ fun GoalOverView(
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Light,
                                 maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                overflow = TextOverflow.Ellipsis,
+                                color = Color(0xFF000000)
                             )
                         }
                     }
@@ -329,7 +359,8 @@ fun GoalOverView(
                     Text(
                         text = "Create new goal",
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Normal
+                        fontWeight = FontWeight.Normal,
+                        color = Color(0xFF000000)
                     )
                 }
             }
@@ -351,6 +382,7 @@ fun HomeScreen(){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .background(Color(0xFFFFFFFF))
             ) {
                 HomeScreenHeader(
                     fullName = userViewModel.getUserFullName()

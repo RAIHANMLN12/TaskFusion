@@ -5,8 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poison.taskfusion.database.Database
 import com.poison.taskfusion.model.Goal
+import com.poison.taskfusion.model.Task
 import com.poison.taskfusion.ui.goalName
+import com.poison.taskfusion.ui.tanggalDipilih
 import io.realm.kotlin.ext.query
+import io.realm.kotlin.query.RealmResults
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -44,6 +47,7 @@ class GoalViewModel: ViewModel() {
             Database.realm.query<Goal>("goalTitle == $0", goalName).asFlow().map { it.list }
         }
     }
+
 
     fun deleteGoal(goal: Goal) {
         Database.realm.writeBlocking {

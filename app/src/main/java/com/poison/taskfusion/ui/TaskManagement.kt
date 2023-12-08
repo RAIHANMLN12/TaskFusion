@@ -21,10 +21,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.ArrowBack
@@ -33,6 +35,7 @@ import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -99,7 +102,8 @@ fun TaskManagementScreen(
                             Text(
                                 text = "Task Management",
                                 fontSize = 16.sp,
-                                fontWeight = FontWeight.Normal
+                                fontWeight = FontWeight.Normal,
+                                color = Color(0xFF000000)
                             )
                         },
                         navigationIcon = {
@@ -110,7 +114,8 @@ fun TaskManagementScreen(
                             ) {
                                 Icon(
                                     Icons.Rounded.ArrowBack,
-                                    contentDescription = null
+                                    contentDescription = null,
+                                    tint = Color(0xFF14213D)
                                 )
                             }
                         }
@@ -121,15 +126,17 @@ fun TaskManagementScreen(
                         onClick = {
                             navController.navigate("addNewTask")
                         },
-                        contentColor = Color.Black,
+                        contentColor = Color(0xFF14213D),
                         modifier = Modifier
-                            .padding(bottom = 90.dp)
+                            .padding(bottom = 90.dp),
+                        containerColor = Color(0xFFFCA311)
                     ) {
                         Icon(
                             Icons.Rounded.Add,
                             contentDescription = "add new task icon",
                             modifier = Modifier
-                                .size(24.dp)
+                                .size(24.dp),
+                            tint = Color(0xFF14213D)
                         )
                     }
                 }
@@ -146,7 +153,9 @@ fun TaskManagementScreen(
                         fontWeight = FontWeight.Normal,
                         fontSize = 16.sp,
                         modifier = Modifier
-                            .padding(horizontal = 24.dp)
+                            .padding(horizontal = 24.dp),
+                        color = Color(0xFF000000)
+
                     )
                     Spacer(modifier = Modifier.height(20.dp))
                     if (taskName.value.isNotEmpty()) {
@@ -155,14 +164,16 @@ fun TaskManagementScreen(
                         )Text(
                             text = "no match",
                             modifier = Modifier
-                                .padding(horizontal = 24.dp)
+                                .padding(horizontal = 24.dp),
+                            color = Color(0xFF000000)
                         )
                     }
                     if (taskData.isEmpty()){
                         Text(
                             text = "You don't have any task right now",
                             modifier = Modifier
-                                .padding(horizontal = 24.dp)
+                                .padding(horizontal = 24.dp),
+                            color = Color(0xFF000000)
                         )
                     }else {
                         TaskList(
@@ -194,7 +205,10 @@ fun TaskItemCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp),
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFE5E5E5)
+        )
     ) {
         Column(
             modifier = Modifier
@@ -215,7 +229,8 @@ fun TaskItemCard(
                         fontWeight = FontWeight.Normal,
                         fontSize = 14.sp,
                         modifier = Modifier
-                            .padding(horizontal = 20.dp, vertical = 10.dp)
+                            .padding(horizontal = 20.dp, vertical = 10.dp),
+                        color = Color(0xFF000000)
                     )
                 }
                 Box(
@@ -249,7 +264,8 @@ fun TaskItemCard(
             Spacer(modifier = Modifier.height(15.dp))
             Text(
                 text = task.taskTitle,
-                fontSize = 16.sp
+                fontSize = 16.sp,
+                color = Color(0xFF000000)
             )
             Spacer(modifier = Modifier.height(10.dp))
             Row(
@@ -258,12 +274,14 @@ fun TaskItemCard(
                 Icon(
                     Icons.Rounded.CalendarMonth,
                     contentDescription = null,
+                    tint = Color(0xFF14213D)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Text(
                     text = task.taskDate,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
+                    color = Color(0xFF000000)
                 )
             }
         }
@@ -290,7 +308,7 @@ fun TaskList(
                         Icon(
                             Icons.Rounded.Delete,
                             contentDescription = null,
-                            tint = Color.Black,
+                            tint = Color(0xFF14213D),
                             modifier = Modifier
                                 .size(30.dp)
                         )
@@ -313,7 +331,8 @@ fun TaskList(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier
-                        .padding(horizontal = 20.dp)
+                        .padding(horizontal = 20.dp),
+                    color = Color(0xFF000000)
                 )
             }
         }
@@ -345,8 +364,9 @@ fun TaskSearchField() {
                 )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Black,
-                unfocusedBorderColor = Color.Black
+                focusedBorderColor = Color(0xFF000000),
+                unfocusedBorderColor = Color(0xFF000000),
+                textColor = Color(0xFF000000)
             ),
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
@@ -360,7 +380,10 @@ fun TaskSearchField() {
                 }
             ),
             placeholder = {
-                Text(text = "Search Task")
+                Text(
+                    text = "Search Task",
+                    color = Color(0xFF000000)
+                )
             }
         )
     }
@@ -410,6 +433,9 @@ fun AddNewTask(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFFFFFFFF))
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = 80.dp)
     ) {
         Spacer(modifier = Modifier.height(20.dp))
         // top bar
@@ -483,7 +509,8 @@ fun AddNewTask(
             Text(
                 text = "Title",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color(0xFF000000)
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -507,7 +534,8 @@ fun AddNewTask(
                     .fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black
+                    unfocusedBorderColor = Color.Black,
+                    textColor = Color(0xFF000000)
                 )
             )
         }
@@ -523,7 +551,8 @@ fun AddNewTask(
             Text(
                 text = "Description",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color(0xFF000000)
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -548,7 +577,8 @@ fun AddNewTask(
                     .height(200.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black
+                    unfocusedBorderColor = Color.Black,
+                    textColor = Color(0xFF000000)
                 )
             )
         }
@@ -562,7 +592,8 @@ fun AddNewTask(
             Text(
                 text = "Due Date",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color(0xFF000000)
             )
             Spacer(modifier = Modifier.height(10.dp))
             Surface(
@@ -585,12 +616,14 @@ fun AddNewTask(
                         Icon(
                             Icons.Rounded.CalendarMonth,
                             contentDescription = null,
+                            tint = Color(0xFF14213D)
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
                         text = formattedDate,
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        color = Color(0xFF000000)
                     )
                     MaterialDialog(
                         dialogState = dateDialogState,
@@ -619,7 +652,8 @@ fun AddNewTask(
             Text(
                 text = "Category",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color(0xFF000000)
             )
             Spacer(modifier = Modifier.height(10.dp))
             LazyRow(
@@ -628,13 +662,17 @@ fun AddNewTask(
                 horizontalArrangement = Arrangement.spacedBy(15.dp),
                 verticalAlignment = Alignment.CenterVertically
             ){
-                items(categoryOption) {
+                items(categoryOption) {category ->
+                    val isSelected = category == newTaskCategory
                     Card(
                         modifier = Modifier
                             .size(width = 70.dp, height = 50.dp)
                             .clickable {
-                                newTaskCategory = it
-                            }
+                                newTaskCategory = category
+                            },
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (isSelected) Color(0xFFFCA311) else Color(0xFFE5E5E5)
+                        )
                     ) {
                         Row(
                             modifier = Modifier
@@ -642,7 +680,10 @@ fun AddNewTask(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Center
                         ) {
-                            Text(text = it)
+                            Text(
+                                text = category,
+                                color = Color(0xFF000000)
+                            )
                         }
                     }
                 }
@@ -653,7 +694,7 @@ fun AddNewTask(
 
         TabRow(
             selectedTabIndex = selectedIndex,
-            containerColor = Color(0xff1E76DA),
+            containerColor = Color(0xFFFCA311),
             modifier = Modifier
                 .padding(horizontal = 20.dp)
                 .clip(RoundedCornerShape(10.dp)),
@@ -672,7 +713,7 @@ fun AddNewTask(
                     else Modifier
                         .clip(RoundedCornerShape(10.dp))
                         .background(
-                            Color(0xff1E76DA)
+                            Color(0xFFFCA311)
                         )
                         .height(50.dp),
                     selected = selected,
@@ -687,8 +728,6 @@ fun AddNewTask(
         }
     }
 }
-
-
 
 @Preview
 @Composable

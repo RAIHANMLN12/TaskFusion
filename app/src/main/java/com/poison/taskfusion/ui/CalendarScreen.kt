@@ -53,7 +53,7 @@ fun CalendarScreen(){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color(0xFFfffefb))
     ) {
         CalendarView()
         TaskList(

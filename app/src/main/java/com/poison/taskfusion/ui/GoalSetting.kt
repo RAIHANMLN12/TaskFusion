@@ -28,6 +28,7 @@ import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -122,7 +123,10 @@ fun GoalSetting(
                     }
                 }
             ){
-                Column {
+                Column(
+                    modifier = Modifier
+                        .background(Color(0xFFFFFFFF))
+                ) {
                     Spacer(modifier = Modifier.height(50.dp))
                     GoalSearchField()
                     Spacer(modifier = Modifier.height(20.dp))
@@ -131,13 +135,17 @@ fun GoalSetting(
                         fontWeight = FontWeight.Normal,
                         fontSize = 16.sp,
                         modifier = Modifier
-                            .padding(horizontal = 24.dp)
+                            .padding(horizontal = 24.dp),
+                        color = Color(0xFF000000)
                     )
                     if (goalName.value.isNotEmpty() && goalData.isEmpty()) {
                         Text(
                             text = "no match",
+                            fontWeight = FontWeight.Normal,
+                            fontSize = 14.sp,
                             modifier = Modifier
-                                .padding(horizontal = 24.dp)
+                                .padding(horizontal = 24.dp),
+                            color = Color(0xFF000000)
                         )
                     }
                     GoalListItem(
@@ -156,7 +164,14 @@ fun GoalSetting(
                     navController.navigate("goalScreen")
                 }
             } else {
-                Text(text = "There Is No Task Here")
+                Text(
+                    text = "There Is No Task Here",
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp),
+                    color = Color(0xFF000000)
+                )
             }
         }
         composable("addNewGoal"){
@@ -183,7 +198,10 @@ fun GoalCardItem(
             .clickable {
                 navController.navigate("goalDetail/${goal.id}")
             },
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFE5E5E5)
+        )
     ) {
         Column(
             modifier = Modifier
@@ -198,7 +216,8 @@ fun GoalCardItem(
                 Text(
                     text = goal.goalTitle,
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFFFFFFF)
                 )
                 Box(
                     modifier = Modifier
@@ -232,7 +251,8 @@ fun GoalCardItem(
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Light,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                color = Color(0xFF000000)
             )
         }
     }
@@ -261,7 +281,7 @@ fun GoalListItem(
                         Icon(
                             Icons.Rounded.Delete,
                             contentDescription = null,
-                            tint = Color.Black,
+                            tint = Color(0xFF14213D),
                             modifier = Modifier
                                 .padding(horizontal = 15.dp)
                         )
@@ -283,7 +303,8 @@ fun GoalListItem(
                 Text(
                     text = "You don't have any goal right now",
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
+                    fontWeight = FontWeight.Normal,
+                    color = Color(0xFF000000)
                 )
             }
         }
@@ -308,6 +329,7 @@ fun AddNewGoal(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFFFFFFFF))
     ) {
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -327,14 +349,15 @@ fun AddNewGoal(
                 Text(
                     text = "Cancel",
                     fontSize = 16.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Normal
+                    color = Color(0xFF000000),
+                    fontWeight = FontWeight.Normal,
                 )
             }
             Text(
                 text = "New Goal",
                 fontSize = 16.sp,
-                color = Color.Black
+                fontWeight = FontWeight.Normal,
+                color = Color(0xFF000000)
             )
             TextButton(
                 onClick = {
@@ -356,7 +379,7 @@ fun AddNewGoal(
                 Text(
                     text = "Done",
                     fontSize = 16.sp,
-                    color = Color.Black,
+                    color = Color(0xFF000000),
                     fontWeight = FontWeight.Normal
                 )
             }
@@ -373,7 +396,8 @@ fun AddNewGoal(
             Text(
                 text = "Title",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color(0xFF000000)
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -396,8 +420,9 @@ fun AddNewGoal(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black
+                    focusedBorderColor = Color(0xFF000000),
+                    unfocusedBorderColor = Color(0xFF000000),
+                    textColor = Color(0xFF000000)
                 )
             )
         }
@@ -413,7 +438,8 @@ fun AddNewGoal(
             Text(
                 text = "Description",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = Color(0xFF000000)
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -437,8 +463,9 @@ fun AddNewGoal(
                     .fillMaxWidth()
                     .height(200.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black
+                    focusedBorderColor = Color(0xFF000000),
+                    unfocusedBorderColor = Color(0xFF000000),
+                    textColor = Color(0xFF000000)
                 )
             )
         }
@@ -466,12 +493,13 @@ fun GoalSearchField(){
                 Icon(
                     Icons.Rounded.Search,
                     contentDescription = "search icon",
-                    tint = Color.Black
+                    tint = Color(0xFF14213D)
                 )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Black,
-                unfocusedBorderColor = Color.Black
+                focusedBorderColor = Color(0xFF000000),
+                unfocusedBorderColor = Color(0xFF000000),
+                textColor = Color(0xFF000000)
             ),
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
@@ -502,7 +530,10 @@ fun GoalDetail(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Project Detail")
+                    Text(
+                        text = "Project Detail",
+                        color = Color(0xFF000000)
+                    )
                 },
                 navigationIcon = {
                     IconButton(
@@ -512,7 +543,8 @@ fun GoalDetail(
                     ) {
                         Icon(
                             Icons.Rounded.ArrowBack,
-                            contentDescription = null
+                            contentDescription = null,
+                            tint = Color(0xFF14213D)
                         )
                     }
                 }
@@ -532,7 +564,8 @@ fun GoalDetail(
                 Text(
                     text = goal.goalTitle,
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF000000)
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
@@ -543,7 +576,8 @@ fun GoalDetail(
                 Text(
                     text = goal.goalDescription,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
+                    fontWeight = FontWeight.Normal,
+                    color = Color(0xFF000000)
                 )
             }
         }

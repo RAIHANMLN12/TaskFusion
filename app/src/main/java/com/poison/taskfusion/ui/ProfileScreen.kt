@@ -1,6 +1,7 @@
 package com.poison.taskfusion.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +44,7 @@ fun ProfileScreen(){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .background(Color(0xFFFFFFFF))
             ) {
                 HeaderProfileScreen(fullName = userViewModel.getUserFullName())
                 Spacer(modifier = Modifier.height(35.dp))
@@ -87,7 +90,8 @@ fun HeaderProfileScreen(
         Text(
             text = fullName,
             fontSize = 16.sp,
-            fontWeight = FontWeight.Normal
+            fontWeight = FontWeight.Normal,
+            color = Color(0xFF000000)
         )
     }
 }
@@ -116,7 +120,8 @@ fun AccountInformation(
             Text(
                 text = "Account Information",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.Normal,
+                color = Color(0xFF000000)
             )
         }
         IconButton(
@@ -128,7 +133,8 @@ fun AccountInformation(
                 Icons.Rounded.ArrowForwardIos,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(25.dp)
+                    .size(25.dp),
+                tint = Color(0xFF14213D)
             )
         }
     }
@@ -152,13 +158,15 @@ fun Setting(
                 Icons.Rounded.Settings,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(24.dp),
+                tint = Color(0xFF14213D)
             )
             Spacer(modifier = Modifier.width(15.dp))
             Text(
                 text = "Settings",
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.Normal,
+                color = Color(0xFF14213D)
             )
         }
         IconButton(
@@ -170,7 +178,8 @@ fun Setting(
                 Icons.Rounded.ArrowForwardIos,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(25.dp)
+                    .size(25.dp),
+                tint = Color(0xFF14213D)
             )
         }
     }
@@ -186,7 +195,10 @@ fun AccountInformationScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "information screen")
+        Text(
+            text = "information screen",
+            color = Color(0xFF000000)
+        )
     }
 }
 
@@ -200,7 +212,10 @@ fun SettingScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Setting Screen")
+        Text(
+            text = "Setting Screen",
+            color = Color(0xFF000000)
+        )
     }
 }
 

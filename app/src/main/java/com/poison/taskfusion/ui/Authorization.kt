@@ -22,6 +22,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -32,7 +33,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -71,7 +71,9 @@ fun SignUp(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFfffefb))
+            .background(
+                MaterialTheme.colorScheme.background
+            )
     ) {
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -84,7 +86,7 @@ fun SignUp(
                 text = "Create Your Account",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
         }
 
@@ -99,7 +101,8 @@ fun SignUp(
             Text(
                 text = "Full Name",
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -122,9 +125,9 @@ fun SignUp(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black,
-                    textColor = Color.Black,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                    textColor = MaterialTheme.colorScheme.primary,
                 )
             )
         }
@@ -141,7 +144,7 @@ fun SignUp(
                 text = "Email",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Light,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -164,9 +167,9 @@ fun SignUp(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black,
-                    textColor = Color.Black,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                    textColor = MaterialTheme.colorScheme.primary,
                 )
             )
         }
@@ -183,7 +186,7 @@ fun SignUp(
                 text = "Password",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Light,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -203,12 +206,14 @@ fun SignUp(
                         if (isShowPassword) {
                             Icon(
                                 Icons.Rounded.Visibility,
-                                contentDescription = null
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.secondary
                             )
                         }else{
                             Icon(
                                 Icons.Rounded.VisibilityOff,
-                                contentDescription = null
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.secondary
                             )
                         }
                     }
@@ -227,9 +232,9 @@ fun SignUp(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black,
-                    textColor = Color.Black,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                    textColor = MaterialTheme.colorScheme.primary,
                 )
             )
         }
@@ -269,8 +274,8 @@ fun SignUp(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFd4eaf7),
-                    contentColor = Color.Black
+                    containerColor = MaterialTheme.colorScheme.tertiary,
+                    contentColor = MaterialTheme.colorScheme.primary
                 )
 
             ) {
@@ -280,7 +285,7 @@ fun SignUp(
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier
                         .padding(vertical = 8.dp),
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -300,7 +305,7 @@ fun SignUp(
                     .clickable {
                         navigateToLoginScreen()
                     },
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }
@@ -328,7 +333,9 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFfffefb))
+            .background(
+                MaterialTheme.colorScheme.background
+            )
     ) {
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -341,7 +348,7 @@ fun LoginScreen(
                 text = "Log In to Your Account",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
         }
 
@@ -357,7 +364,7 @@ fun LoginScreen(
                 text = "Email",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Light,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -366,7 +373,10 @@ fun LoginScreen(
                     userEmail = it
                 },
                 placeholder = {
-                    Text(text = "Enter the email address")
+                    Text(
+                        text = "Enter the email address",
+                        color = MaterialTheme.colorScheme.primary
+                    )
                 },
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Done
@@ -380,9 +390,9 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black,
-                    textColor = Color.Black,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                    textColor = MaterialTheme.colorScheme.primary,
                 )
             )
         }
@@ -399,7 +409,7 @@ fun LoginScreen(
                 text = "Password",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Light,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
@@ -419,12 +429,14 @@ fun LoginScreen(
                         if (isShowPassword) {
                             Icon(
                                 Icons.Rounded.Visibility,
-                                contentDescription = null
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.secondary
                             )
                         }else{
                             Icon(
                                 Icons.Rounded.VisibilityOff,
-                                contentDescription = null
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.secondary
                             )
                         }
                     }
@@ -443,9 +455,9 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Black,
-                    unfocusedBorderColor = Color.Black,
-                    textColor = Color.Black,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                    textColor = MaterialTheme.colorScheme.primary,
                 )
             )
         }
@@ -481,8 +493,8 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFd4eaf7),
-                    contentColor = Color.Black
+                    containerColor = MaterialTheme.colorScheme.tertiary,
+                    contentColor = MaterialTheme.colorScheme.primary
                 )
             ) {
                 Text(
@@ -491,7 +503,7 @@ fun LoginScreen(
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier
                         .padding(vertical = 8.dp),
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -511,7 +523,7 @@ fun LoginScreen(
                     .clickable {
                         navigateToSignUpScreen()
                     },
-                color = Color.Black
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }
